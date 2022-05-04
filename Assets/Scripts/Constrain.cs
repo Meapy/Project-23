@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Constrain: SteeringBehaviour
 {
-    public float radius = 200.0f;
+    public float radius = 100.0f;
 
     public Vector3 center;
 

@@ -12,12 +12,12 @@ public class Boid : MonoBehaviour
     public float mass = 1;
 
     [Range(0.0f, 10.0f)]
-    public float damping = 0.01f;
+    public float damping = 0.1f;
 
     [Range(0.0f, 1.0f)]
     public float banking = 0.04f;
-    public float maxSpeed = 50.0f;
-    public float maxForce = 100.0f;
+    public float maxSpeed = 25.0f;
+    public float maxForce = 50.0f;
 
     public void OnDrawGizmos()
     {
