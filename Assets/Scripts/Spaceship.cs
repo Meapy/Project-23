@@ -17,9 +17,7 @@ public class Spaceship : MonoBehaviour
         gameObject.AddComponent<NoiseWander>().axis = NoiseWander.Axis.Vertical;
         gameObject.AddComponent<ObstacleAvoidance>();
         gameObject.AddComponent<Constrain>();
-        //add the boid component to this object
         
-
     }
 
 
