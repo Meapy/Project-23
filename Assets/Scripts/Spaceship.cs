@@ -7,12 +7,8 @@ public class Spaceship : MonoBehaviour
     public int length = 5;
     public Material material;
 
-
-
     void Awake()
-    {
-       
-        
+    {        
         gameObject.AddComponent<Boid>();
         gameObject.AddComponent<Seek>();
         gameObject.AddComponent<ObstacleAvoidance>();
