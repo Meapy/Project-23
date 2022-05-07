@@ -5,16 +5,11 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float speed = 200f;
-    public GameObject target;
+    public GameObject target = null;
     // Start is called before the first frame update
     void Start()
     {
 
-    }
-
-    public void KillMe()
-    {
-        Destroy(this.gameObject);
     }
 
     // Update is called once per frame
@@ -28,8 +23,9 @@ public class Bullet : MonoBehaviour
 
             Destroy(this.gameObject);
             print("Game object destroyed");
-            //remove 0.5 tiberium from the base
+            //lose hp
             target.GetComponent<BigShip>().health -= 1;
+            print(target.GetComponent<BigShip>().health);
         }
 
         

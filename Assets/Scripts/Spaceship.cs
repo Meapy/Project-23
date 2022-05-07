@@ -4,21 +4,18 @@ using UnityEngine;
 
 public class Spaceship : MonoBehaviour
 {
-    public int length = 5;
-    public Material material;
     private IEnumerator coroutine;
-
     private GameObject closest;
     public GameObject bullet;
+    private bool spawning = false;
 
     void Awake()
     {
         gameObject.AddComponent<Boid>();
-        gameObject.AddComponent<Seek>();
         gameObject.AddComponent<ObstacleAvoidance>();
+        gameObject.AddComponent<Seek>();
         gameObject.AddComponent<Constrain>();
-        //set bullet to be the BlueBullet GameObject
-        bullet = GameObject.Find("BlueBullet");
+
     }
 
 
@@ -26,6 +23,7 @@ public class Spaceship : MonoBehaviour
     void Start()
     {
         coroutine = spawnBullet();
+        
     }
 
     // Update is called once per frame
@@ -45,25 +43,39 @@ public class Spaceship : MonoBehaviour
                 distance = curDistance;
             }
         }
+        //two seeks, needs to be fixed, probably not tho
         Seek seek = this.transform.GetComponent<Seek>();
         seek.targetGameObject = closest;
-        if (distance < 600f)
+        //spawn bullet once distance is less than 1000
+        if (distance < 1000)
         {
-            StartCoroutine(coroutine);
+            if (!spawning)
+            {
+                spawning = true;
+                StartCoroutine(spawnBullet());
+            }
         }
         else
         {
-            StopCoroutine(coroutine);
-        }
+            spawning = false;
 
+        }
     }
     IEnumerator spawnBullet()
     {
-        bullet = Instantiate(bullet, transform.position, Quaternion.identity) as GameObject;
-        bullet.GetComponent<Bullet>().target = closest;
-        //increase the size of the bullet by 2x
-        bullet.transform.localScale = new Vector3(2, 2, 2);
-        yield return new WaitForSeconds(1);
+        while (spawning)
+        {
+            yield return new WaitForSeconds(1f);
+            bullet = Resources.Load("BlueBullet") as GameObject;
+            bullet = Instantiate(bullet, transform.position, Quaternion.identity) as GameObject;
+            bullet.GetComponent<Bullet>().target = closest;
+            bullet.GetComponent<Bullet>().speed = 100f;
+            //increase the size of the bullet by 2x
+            bullet.transform.localScale = new Vector3(2, 2, 2);
+            
+
+        }
+
     }
 
 }

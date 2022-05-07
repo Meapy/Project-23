@@ -8,7 +8,7 @@ public class BigShip : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.AddComponent<Boid>();
+        gameObject.AddComponent<Boid>().maxSpeed = 50f;
         gameObject.AddComponent<Constrain>();
         gameObject.AddComponent<NoiseWander>().axis = NoiseWander.Axis.Horizontal;
         gameObject.AddComponent<NoiseWander>().axis = NoiseWander.Axis.Vertical;
@@ -18,6 +18,11 @@ public class BigShip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if health is 0, destroy the game object
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
         
     }
 }
