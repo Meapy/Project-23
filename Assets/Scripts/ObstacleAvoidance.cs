@@ -6,15 +6,15 @@ using UnityEngine;
 
 public class ObstacleAvoidance : SteeringBehaviour
 {
-    public float scale = 10f;
-    public float forwardFeelerDepth = 50;
-    public float sideFeelerDepth = 50;
+    public float scale = 4.0f;
+    public float forwardFeelerDepth = 30;
+    public float sideFeelerDepth = 15;
     FeelerInfo[] feelers = new FeelerInfo[5];
 
-    public float frontFeelerUpdatesPerSecond = 20.0f;
-    public float sideFeelerUpdatesPerSecond = 20.0f;
+    public float frontFeelerUpdatesPerSecond = 10.0f;
+    public float sideFeelerUpdatesPerSecond = 5.0f;
 
-    public float feelerRadius = 50.0f;
+    public float feelerRadius = 2.0f;
 
     public enum ForceType
     {
@@ -56,7 +56,6 @@ public class ObstacleAvoidance : SteeringBehaviour
         }
     }
 
-    Vector3 lerpedForce = Vector3.zero;
     public override Vector3 Calculate()
     {
         force = Vector3.zero;
@@ -69,8 +68,7 @@ public class ObstacleAvoidance : SteeringBehaviour
                 force += CalculateSceneAvoidanceForce(info);
             }
         }
-        lerpedForce = Vector3.Lerp(lerpedForce,force, Time.deltaTime);
-        return lerpedForce;
+        return force;
     }
 
     void UpdateFeeler(int feelerNum, Quaternion localRotation, float baseDepth, FeelerInfo.FeeelerType feelerType)

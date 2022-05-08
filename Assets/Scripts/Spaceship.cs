@@ -8,9 +8,11 @@ public class Spaceship : MonoBehaviour
     private GameObject closest;
     public GameObject bullet;
     private bool spawning = false;
+    private bool spawned = false;
 
     void Awake()
     {
+
     }
 
 
@@ -18,7 +20,8 @@ public class Spaceship : MonoBehaviour
     void Start()
     {
         coroutine = spawnBullet();
-        
+        this.transform.GetComponent<Pursue>().enabled = false;
+
     }
 
     // Update is called once per frame
@@ -38,9 +41,6 @@ public class Spaceship : MonoBehaviour
                 distance = curDistance;
             }
         }
-        //two seeks, needs to be fixed, probably not tho
-        Seek seek = this.transform.GetComponent<Seek>();
-        seek.targetGameObject = closest;
         //spawn bullet once distance is less than 1000
         if (distance < 1000)
         {
@@ -55,6 +55,20 @@ public class Spaceship : MonoBehaviour
             spawning = false;
 
         }
+        //if BigShips is empty, add a noise wander to the spaceship
+        if (BigShips.Length == 0)
+        {
+            if (!spawned)
+            {
+                spawned = true;
+                //disable the persure script
+                this.transform.GetComponent<Pursue>().enabled = false;
+                this.transform.GetComponent<Pursue>().enabled = false;
+                
+            }
+
+
+        }
     }
     IEnumerator spawnBullet()
     {
@@ -67,7 +81,7 @@ public class Spaceship : MonoBehaviour
             bullet.GetComponent<Bullet>().speed = 100f;
             //increase the size of the bullet by 2x
             bullet.transform.localScale = new Vector3(2, 2, 2);
-            
+
 
         }
 

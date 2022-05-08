@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     public float speed = 200f;
     public GameObject target = null;
     // Start is called before the first frame update
+    public GameObject explosion;
     void Start()
     {
 
@@ -23,8 +24,12 @@ public class Bullet : MonoBehaviour
 
             Destroy(this.gameObject);
             //lose hp
-            target.GetComponent<BigShip>().health -= 1;
+            target.GetComponent<BigShip>().health -= 5;
             print(target.GetComponent<BigShip>().health);
+            explosion = Resources.Load("SmallExplosionEffect") as GameObject;
+            explosion = GameObject.Instantiate(this.explosion);
+            explosion.transform.position = target.transform.position;
+            Destroy(explosion, 1f);
         }
 
         
