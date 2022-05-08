@@ -17,8 +17,8 @@ public class Convoy : MonoBehaviour
         { 
             i++;
             child.gameObject.AddComponent<Spaceship>();
-            child.gameObject.AddComponent<ObstacleAvoidance>().weight = 2;
-            child.gameObject.AddComponent<Constrain>();
+            child.gameObject.AddComponent<ObstacleAvoidance>().weight = 10;
+            child.gameObject.AddComponent<Constrain>().radius = 200f;
             // in modulo 3 add braking, incident and normal as the force type to obstacle avoidance
             if (i% 3 == 0)
             {
@@ -39,14 +39,16 @@ public class Convoy : MonoBehaviour
         }
         //get all the objects with the tag camera
         GameObject[] cameras = GameObject.FindGameObjectsWithTag("Camera");
+        print(cameras);
         //set the main camera to the first camera in the array
         cameras[0].GetComponent<Camera>().enabled = true;
+        cameraCount = 0;
         //set the rest of the cameras to false
-
         for (int j = 1; j < cameras.Length; j++)
         {
             cameras[j].GetComponent<Camera>().enabled = false;
-            cameraCount = j;
+            print(j);
+            
         }
 
     }
@@ -65,6 +67,7 @@ public class Convoy : MonoBehaviour
                 cameraCount = 0;
             }
             cameras[cameraCount].GetComponent<Camera>().enabled = true;
+            print(cameraCount);
         }
 
     }

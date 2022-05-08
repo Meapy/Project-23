@@ -21,6 +21,8 @@ public class Spaceship : MonoBehaviour
     {
         coroutine = spawnBullet();
         this.transform.GetComponent<Pursue>().enabled = false;
+        this.transform.GetComponent<Boid>().maxForce = 100;
+        this.transform.GetComponent<Boid>().maxSpeed = 30;
 
     }
 
@@ -42,7 +44,7 @@ public class Spaceship : MonoBehaviour
             }
         }
         //spawn bullet once distance is less than 1000
-        if (distance < 1000)
+        if (distance < 1500f)
         {
             if (!spawning)
             {
@@ -63,8 +65,6 @@ public class Spaceship : MonoBehaviour
                 spawned = true;
                 //disable the persure script
                 this.transform.GetComponent<Pursue>().enabled = false;
-                this.transform.GetComponent<Pursue>().enabled = false;
-                
             }
 
 
