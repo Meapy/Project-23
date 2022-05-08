@@ -10,7 +10,7 @@ public class BigShip : MonoBehaviour
     {
         gameObject.AddComponent<Boid>().maxSpeed = 50f;
         gameObject.AddComponent<Constrain>();
-        gameObject.AddComponent<NoiseWander>().axis = NoiseWander.Axis.Horizontal;
+        //gameObject.AddComponent<NoiseWander>().axis = NoiseWander.Axis.Horizontal;
         gameObject.AddComponent<NoiseWander>().axis = NoiseWander.Axis.Vertical;
 
     }

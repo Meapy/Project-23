@@ -4,17 +4,37 @@ using UnityEngine;
 
 public class Convoy : MonoBehaviour
 {
-    public GameObject prefab;
     public GameObject health;
 
     // Start is called before the first frame update
     void Awake()
     {
         StartCoroutine(spawnHealth());
+        int i = 0;
         //add the Spaceship component to all the child objects
         foreach (Transform child in transform)
-        {
+        { 
+            i++;
             child.gameObject.AddComponent<Spaceship>();
+            child.gameObject.AddComponent<ObstacleAvoidance>().weight = 2;
+            child.gameObject.AddComponent<Boid>();
+            child.gameObject.AddComponent<Seek>();
+            child.gameObject.AddComponent<Constrain>();
+            // in modulo 3 add braking, incident and normal as the force type to obstacle avoidance
+            if (i% 3 == 0)
+            {
+                child.gameObject.GetComponent<ObstacleAvoidance>().forceType = ObstacleAvoidance.ForceType.incident;
+            }
+            else if (i % 3 == 1)
+            {
+                child.gameObject.GetComponent<ObstacleAvoidance>().forceType = ObstacleAvoidance.ForceType.braking;
+                
+            }
+            else
+            {
+                child.gameObject.GetComponent<ObstacleAvoidance>().forceType = ObstacleAvoidance.ForceType.normal;
+            }
+
         }
 
     }
@@ -22,7 +42,7 @@ public class Convoy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     IEnumerator spawnHealth()
     {
@@ -35,7 +55,7 @@ public class Convoy : MonoBehaviour
         float height = Random.Range(0, 10);
         //set the position of the health
         health.transform.position = new Vector3(position.x, height, position.y);
-        
+
         StartCoroutine(spawnHealth());
     }
 }

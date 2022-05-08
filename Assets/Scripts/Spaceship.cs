@@ -11,11 +11,6 @@ public class Spaceship : MonoBehaviour
 
     void Awake()
     {
-        gameObject.AddComponent<Boid>();
-        gameObject.AddComponent<ObstacleAvoidance>();
-        gameObject.AddComponent<Seek>();
-        gameObject.AddComponent<Constrain>();
-
     }
 
 

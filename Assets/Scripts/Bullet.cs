@@ -22,7 +22,6 @@ public class Bullet : MonoBehaviour
         {
 
             Destroy(this.gameObject);
-            print("Game object destroyed");
             //lose hp
             target.GetComponent<BigShip>().health -= 1;
             print(target.GetComponent<BigShip>().health);
