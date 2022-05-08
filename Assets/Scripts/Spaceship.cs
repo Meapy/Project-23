@@ -75,8 +75,11 @@ public class Spaceship : MonoBehaviour
         while (spawning)
         {
             yield return new WaitForSeconds(1f);
-            bullet = Resources.Load("BlueBullet") as GameObject;
+            bullet = Resources.Load("RocketWarhead") as GameObject;
+            //add Bullet component to the bullet
             bullet = Instantiate(bullet, transform.position, Quaternion.identity) as GameObject;
+            //set size to be 0.2
+            bullet.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
             bullet.GetComponent<Bullet>().target = closest;
             bullet.GetComponent<Bullet>().speed = 100f;
             //increase the size of the bullet by 2x
