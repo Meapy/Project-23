@@ -44,8 +44,12 @@ public class Spaceship : MonoBehaviour
                 distance = curDistance;
             }
         }
-        //set persure target to be closet
-        this.transform.GetComponent<Pursue>().target = closest.GetComponent<Boid>();
+        if (closest != null)
+        {
+            //set persure target to be closet
+            this.transform.GetComponent<Pursue>().target = closest.GetComponent<Boid>();
+        }
+
         //spawn bullet once distance is less than 1000
         if (distance < 1500f)
         {
@@ -68,6 +72,9 @@ public class Spaceship : MonoBehaviour
                 spawned = true;
                 //disable the persure script
                 this.transform.GetComponent<Pursue>().enabled = false;
+                gameObject.AddComponent<NoiseWander>().axis = NoiseWander.Axis.Horizontal;
+                gameObject.AddComponent<NoiseWander>().axis = NoiseWander.Axis.Vertical;
+                gameObject.AddComponent<Constrain>().radius = 100f;
             }
 
 

@@ -11,7 +11,7 @@ public class BigShip : MonoBehaviour
     void Start()
     {
         gameObject.AddComponent<Boid>().maxSpeed = 26f;
-        gameObject.AddComponent<Constrain>().radius = 80f;
+        gameObject.AddComponent<Constrain>().radius = 100f;
         gameObject.AddComponent<NoiseWander>().axis = NoiseWander.Axis.Horizontal;
         gameObject.AddComponent<NoiseWander>().axis = NoiseWander.Axis.Vertical;
 
@@ -37,6 +37,9 @@ public class BigShip : MonoBehaviour
             smoke.transform.position = this.transform.position;
             Destroy(smoke, 1f);    
         }
+        //if game object with tag health exists, go towards the the gameobject
+
+        //on collision with game object, increase hp by 2 and delete the health game object
         
     }
 }

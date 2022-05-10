@@ -57,6 +57,7 @@ public class Convoy : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GameObject[] cameras = GameObject.FindGameObjectsWithTag("Camera");
+            //if camera exists, disable it, else continue --- needs to be implemented
             cameras[cameraCount].GetComponent<Camera>().enabled = false;
             cameraCount++;
             if (cameraCount >= cameras.Length)

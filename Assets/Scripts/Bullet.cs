@@ -17,20 +17,29 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         //move towards the target
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        if(target != null)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    
         //once it is reached, delete the bullet
         if (transform.position == target.transform.position)
         {
 
             Destroy(this.gameObject);
             //lose hp
-            target.GetComponent<BigShip>().health -= 5;
+            target.GetComponent<BigShip>().health -= 25;
             print(target.GetComponent<BigShip>().health);
             explosion = Resources.Load("SmallExplosionEffect") as GameObject;
             explosion = GameObject.Instantiate(this.explosion);
             explosion.transform.position = target.transform.position;
             Destroy(explosion, 1f);
         }
+        //else if target does not exist, delete bullet
 
         
 
