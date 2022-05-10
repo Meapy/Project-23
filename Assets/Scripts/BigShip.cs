@@ -10,8 +10,8 @@ public class BigShip : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.AddComponent<Boid>().maxSpeed = 20f;
-        gameObject.AddComponent<Constrain>().radius = 100f;
+        gameObject.AddComponent<Boid>().maxSpeed = 26f;
+        gameObject.AddComponent<Constrain>().radius = 80f;
         gameObject.AddComponent<NoiseWander>().axis = NoiseWander.Axis.Horizontal;
         gameObject.AddComponent<NoiseWander>().axis = NoiseWander.Axis.Vertical;
 

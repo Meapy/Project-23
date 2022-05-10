@@ -9,6 +9,7 @@ public class Spaceship : MonoBehaviour
     public GameObject bullet;
     private bool spawning = false;
     private bool spawned = false;
+    public int health = 100;
 
     void Awake()
     {
@@ -22,7 +23,7 @@ public class Spaceship : MonoBehaviour
         coroutine = spawnBullet();
         this.transform.GetComponent<Pursue>().enabled = false;
         this.transform.GetComponent<Boid>().maxForce = 100;
-        this.transform.GetComponent<Boid>().maxSpeed = 30;
+        this.transform.GetComponent<Boid>().maxSpeed = 25;
 
     }
 
@@ -43,6 +44,8 @@ public class Spaceship : MonoBehaviour
                 distance = curDistance;
             }
         }
+        //set persure target to be closet
+        this.transform.GetComponent<Pursue>().target = closest.GetComponent<Boid>();
         //spawn bullet once distance is less than 1000
         if (distance < 1500f)
         {
@@ -74,12 +77,12 @@ public class Spaceship : MonoBehaviour
     {
         while (spawning)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
             bullet = Resources.Load("RocketWarhead") as GameObject;
             //add Bullet component to the bullet
             bullet = Instantiate(bullet, transform.position, Quaternion.identity) as GameObject;
             //set size to be 0.2
-            bullet.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+            bullet.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             bullet.GetComponent<Bullet>().target = closest;
             bullet.GetComponent<Bullet>().speed = 100f;
             //increase the size of the bullet by 2x

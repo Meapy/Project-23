@@ -6,15 +6,15 @@ using UnityEngine;
 
 public class ObstacleAvoidance : SteeringBehaviour
 {
-    public float scale = 4.0f;
-    public float forwardFeelerDepth = 30;
-    public float sideFeelerDepth = 15;
+    public float scale = 40.0f;
+    public float forwardFeelerDepth = 300;
+    public float sideFeelerDepth = 150;
     FeelerInfo[] feelers = new FeelerInfo[5];
 
-    public float frontFeelerUpdatesPerSecond = 10.0f;
-    public float sideFeelerUpdatesPerSecond = 5.0f;
+    public float frontFeelerUpdatesPerSecond = 100.0f;
+    public float sideFeelerUpdatesPerSecond = 50.0f;
 
-    public float feelerRadius = 2.0f;
+    public float feelerRadius = 20.0f;
 
     public enum ForceType
     {
