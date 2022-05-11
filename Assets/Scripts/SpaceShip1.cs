@@ -31,17 +31,11 @@ public class SpaceShip1 : MonoBehaviour
         target = Team2[random];
 
 
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        //activate the persue script if the spaceship is not already active
-        if (!GetComponent<SpaceShip1>().enabled)
-        {
-            GetComponent<SpaceShip1>().enabled = true;
-        }
         //set the target to be a random gameobject with the tag Team2 if it doesn not have a target
         if (GetComponent<Pursue>().target == null)
         {
@@ -90,7 +84,7 @@ public class SpaceShip1 : MonoBehaviour
     {
         while (spawning)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
             bullet = Resources.Load("RocketWarheadGreen") as GameObject;
             //add Bullet component to the bullet
             bullet = Instantiate(bullet, transform.position, Quaternion.identity) as GameObject;

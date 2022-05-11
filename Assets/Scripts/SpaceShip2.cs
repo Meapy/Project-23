@@ -76,7 +76,7 @@ public class SpaceShip2 : MonoBehaviour
     {
         while (spawning)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
             bullet = Resources.Load("RocketWarheadRed") as GameObject;
             //add Bullet component to the bullet
             bullet = Instantiate(bullet, transform.position, Quaternion.identity) as GameObject;

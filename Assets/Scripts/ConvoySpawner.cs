@@ -28,14 +28,12 @@ public class ConvoySpawner : MonoBehaviour
                     ship.tag = "Team1";
                     //add the Spaceship component to the ship
                     ship.AddComponent<SpaceShip1>();
-
-
+                    ship.GetComponent<SpaceShip1>().enabled = true;
                 }
                 //if team is 2, spawn the ships that are in the team2 folder in resources
                 else if (team == 2)
                 {
                     GameObject ship = Resources.Load("TeamTwo/Prefab" + i) as GameObject;
-                    print("TeamTwo/Prefab" + i);
                     ship = GameObject.Instantiate(ship);
                     //set the position of the ship to a random point within the radius
                     ship.transform.position = new Vector3(Random.Range(-radius, radius) + 400, 0, Random.Range(-radius, radius));
@@ -47,8 +45,6 @@ public class ConvoySpawner : MonoBehaviour
                     ship.tag = "Team2";
                     //add the Spaceship component to the ship
                     ship.AddComponent<SpaceShip2>();
-
-
                 }
             }
         }
