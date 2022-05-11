@@ -364,8 +364,12 @@ All other assets were taken from the Unity Asset Store.
 
 
 # Video:
-[![YouTube](https://www.youtube.com/watch?v=RVxdvy0pVrs/0.jpg)](https://www.youtube.com/watch?v=RVxdvy0pVrs)
+[![YouTube](https://www.youtube.com/vi/RVxdvy0pVrs/0.jpg)](https://www.youtube.com/watch?v=RVxdvy0pVrs)
 
 # Screenshots:
 ![An image](https://i.gyazo.com/4de85e741e08fb5168ee33a8819c520f.png)
+![An image](https://i.gyazo.com/d833338bdf320745c73817b73439530a.jpg)
+![An image](https://i.gyazo.com/8cd8a27806b197112e62ec04d148d626.png)
+![An image](https://i.gyazo.com/5358cdbd1836488246b60322a17cf332.png)
+![An image](https://i.gyazo.com/b7c806c75ce16286fe481866ab0d495f.png)
 
