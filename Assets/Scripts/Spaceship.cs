@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Spaceship : MonoBehaviour
 {
@@ -8,7 +9,6 @@ public class Spaceship : MonoBehaviour
     private GameObject closest;
     public GameObject bullet;
     private bool spawning = false;
-    private bool spawned = false;
     public int health = 100;
 
     void Awake()
@@ -22,8 +22,8 @@ public class Spaceship : MonoBehaviour
     {
         coroutine = spawnBullet();
         this.transform.GetComponent<Pursue>().enabled = false;
-        this.transform.GetComponent<Boid>().maxForce = 100;
-        this.transform.GetComponent<Boid>().maxSpeed = 25;
+        this.transform.GetComponent<Boid>().maxForce = 120;
+        this.transform.GetComponent<Boid>().maxSpeed = 35;
 
     }
 
@@ -64,18 +64,12 @@ public class Spaceship : MonoBehaviour
             spawning = false;
 
         }
-        //if BigShips is empty, add a noise wander to the spaceship
+        //if BigShips 
         if (BigShips.Length == 0)
         {
-            if (!spawned)
-            {
-                spawned = true;
-                //disable the persure script
-                this.transform.GetComponent<Pursue>().enabled = false;
-                gameObject.AddComponent<NoiseWander>().axis = NoiseWander.Axis.Horizontal;
-                gameObject.AddComponent<NoiseWander>().axis = NoiseWander.Axis.Vertical;
-                gameObject.AddComponent<Constrain>().radius = 100f;
-            }
+            //load next scene
+            SceneManager.LoadScene("Scene2");
+
         }
     }
     IEnumerator spawnBullet()

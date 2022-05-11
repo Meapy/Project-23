@@ -31,7 +31,7 @@ public class Bullet : MonoBehaviour
         {
             Destroy(this.gameObject);
             //lose hp
-            target.GetComponent<BigShip>().health -= 5;
+            target.GetComponent<BigShip>().health -= 25;
             print(target.GetComponent<BigShip>().health);
             explosion = Resources.Load("SmallExplosionEffect") as GameObject;
             explosion = GameObject.Instantiate(this.explosion);
