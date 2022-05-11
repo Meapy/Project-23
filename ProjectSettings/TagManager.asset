@@ -9,6 +9,9 @@ TagManager:
   - Bullet
   - Fighter
   - Camera
+  - Ammo
+  - Team1
+  - Team2
   layers:
   - Default
   - TransparentFX
