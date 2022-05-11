@@ -18,7 +18,6 @@ public class Convoy : MonoBehaviour
             i++;
             child.gameObject.AddComponent<Spaceship>();
             child.gameObject.AddComponent<ObstacleAvoidance>().weight = 10;
-            //child.gameObject.AddComponent<Constrain>().radius = 200f;
             // in modulo 3 add braking, incident and normal as the force type to obstacle avoidance
             if (i% 3 == 0)
             {

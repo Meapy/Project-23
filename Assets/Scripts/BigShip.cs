@@ -36,10 +36,6 @@ public class BigShip : MonoBehaviour
             smoke = GameObject.Instantiate(this.smoke);
             smoke.transform.position = this.transform.position;
             Destroy(smoke, 1f);    
-        }
-        //if game object with tag health exists, go towards the the gameobject
-
-        //on collision with game object, increase hp by 2 and delete the health game object
-        
+        }  
     }
 }
