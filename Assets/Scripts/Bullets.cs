@@ -37,6 +37,8 @@ public class Bullets : MonoBehaviour
                 explosion = GameObject.Instantiate(this.explosion);
                 explosion.transform.position = target.transform.position;
                 Destroy(explosion, 1f);
+                //play sound effect from resources/Explosion
+                AudioSource.PlayClipAtPoint(Resources.Load("Explosions/Main") as AudioClip, transform.position);
             }
             else if(target.tag == "Team2")
             {

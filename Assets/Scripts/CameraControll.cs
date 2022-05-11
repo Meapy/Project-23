@@ -29,7 +29,6 @@ public class CameraControll : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GameObject[] cameras = GameObject.FindGameObjectsWithTag("Camera");
-            //if camera exists, disable it, else continue --- needs to be implemented
             cameras[count].GetComponent<Camera>().enabled = false;
             count++;
             if (count >= cameras.Length)
@@ -38,9 +37,5 @@ public class CameraControll : MonoBehaviour
             }
             cameras[count].GetComponent<Camera>().enabled = true;
         }
-
-
-
-        
     }
 }

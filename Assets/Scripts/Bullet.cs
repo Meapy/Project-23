@@ -31,12 +31,13 @@ public class Bullet : MonoBehaviour
         {
             Destroy(this.gameObject);
             //lose hp
-            target.GetComponent<BigShip>().health -= 25;
+            target.GetComponent<BigShip>().health -= 5;
             print(target.GetComponent<BigShip>().health);
             explosion = Resources.Load("SmallExplosionEffect") as GameObject;
             explosion = GameObject.Instantiate(this.explosion);
             explosion.transform.position = target.transform.position;
             Destroy(explosion, 1f);
+             AudioSource.PlayClipAtPoint(Resources.Load("Explosions/Main") as AudioClip, transform.position);
         }
 
     }

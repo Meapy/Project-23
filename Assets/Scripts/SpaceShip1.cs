@@ -94,7 +94,8 @@ public class SpaceShip1 : MonoBehaviour
             bullet.GetComponent<Bullets>().speed = 100f;
             //increase the size of the bullet by 2x
             bullet.transform.localScale = new Vector3(2, 2, 2);
-
+            AudioSource.PlayClipAtPoint(Resources.Load("Explosions/ShootSound") as AudioClip, transform.position);
+        
         }
 
     }
