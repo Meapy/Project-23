@@ -20,6 +20,5 @@ public class RotateCamera : MonoBehaviour
             rotationSpeed = 2f;
         }
         transform.Rotate(Vector3.up * Time.deltaTime * rotationSpeed);
-        print(transform.rotation.y);
     }
 }
