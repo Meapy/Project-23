@@ -232,7 +232,75 @@ In this scene, there is a battle between 2 different groups of spaceships. They 
         StartCoroutine(SpawnShips());
     }
 ```
+**SpaceShip1.cs** 
+Spaceship2 is very similar
+```C#
+    void Awake()
+    {
+        //attach rigidbody to the spaceship
+        gameObject.AddComponent<Rigidbody>();
+        GetComponent<Rigidbody>().useGravity = false;
+        //attach the persue script to the spaceship
+        gameObject.AddComponent<Pursue>();
+        //attach the boid script to the spaceship
+        gameObject.AddComponent<Boid>().maxSpeed = 25;
+        gameObject.AddComponent<ObstacleAvoidance>();
+        //set target to be a random gameobject with the tag Team2
+        
+        GameObject[] Team2 = GameObject.FindGameObjectsWithTag("Team2");
+        int random = Random.Range(0, Team2.Length);
+        GetComponent<Pursue>().target = Team2[random].GetComponent<Boid>();
+        //set target to be that gameobject
+        target = Team2[random];
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        //set the target to be a random gameobject with the tag Team2 if it doesn not have a target
+        if (GetComponent<Pursue>().target == null)
+        {
+            GameObject[] Team2 = GameObject.FindGameObjectsWithTag("Team2");
+            int random = Random.Range(0, Team2.Length);
+            GetComponent<Pursue>().target = Team2[random].GetComponent<Boid>();
+            target = Team2[random];
+        }
+        //get distance between the spaceship and the target
+        float distance = Vector3.Distance(this.transform.position, target.transform.position);
+        //spawn bullet once distance is less than 1000
+        if (distance < 1500f)
+        {
+            if (!spawning)
+            {
+                spawning = true;
+                StartCoroutine(spawnBullet());
+                print("swapnings");
+            }
+        }
+        else
+        {
+            spawning = false;
 
+        }
+        //if health is 0, destroy the game object with an explosion
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+            explosion = Resources.Load("ExplosionEffect") as GameObject;
+            explosion = GameObject.Instantiate(this.explosion);
+            explosion.transform.position = this.transform.position;
+            Destroy(explosion, 1f);
+
+        }
+        //if health is less than 50, spawn smoke
+        if (health <= 50)
+        {
+            smoke = Resources.Load("Smoke") as GameObject;
+            smoke = GameObject.Instantiate(this.smoke);
+            smoke.transform.position = this.transform.position;
+            Destroy(smoke, 1f);
+        }
+    }
+```
 ## Cameras
 The cameras are placed beforehand and you can switch between the different cameras by pressing space. 
 In Secene 2 there is a camera that rotates around the battle field to show the entire battle field.
@@ -289,16 +357,14 @@ In Secene 2 there is a camera that rotates around the battle field to show the e
 | SpaceShip2.cs | Self written |
 | RotatePlanet.cs | Self written |
 All other scripts were taken from https://github.com/skooter500/GE2-2021-2022 and modified to fit the project.
-such as: 
 
-
-
+All other assets were taken from the Unity Asset Store. 
 
 
 
 
 # Video:
-[![YouTube](https://www.youtube.com/watch?v=RVxdvy0pVrs)](https://www.youtube.com/watch?v=RVxdvy0pVrs)
+[![YouTube](https://www.youtube.com/watch?v=RVxdvy0pVrs/0.jpg)](https://www.youtube.com/watch?v=RVxdvy0pVrs)
 
 # Screenshots:
 ![An image](https://i.gyazo.com/4de85e741e08fb5168ee33a8819c520f.png)
