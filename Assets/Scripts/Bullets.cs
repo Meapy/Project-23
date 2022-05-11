@@ -25,17 +25,13 @@ public class Bullets : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-    
         //once it is reached, delete the bullet
         if (transform.position == target.transform.position)
         {
-            Destroy(this.gameObject);
-            //lose hp
-            //if target has tag of team1, lose hp
-            //if target has tag of team2, lose hp
+            
             if(target.tag == "Team1")
             {
-                target.GetComponent<SpaceShip1>().health -= 5;
+                target.GetComponent<SpaceShip1>().health -= 2;
                 print(target.GetComponent<SpaceShip1>().health);
                 explosion = Resources.Load("SmallExplosionEffect") as GameObject;
                 explosion = GameObject.Instantiate(this.explosion);
@@ -44,13 +40,14 @@ public class Bullets : MonoBehaviour
             }
             else if(target.tag == "Team2")
             {
-                target.GetComponent<SpaceShip2>().health -= 5;
+                target.GetComponent<SpaceShip2>().health -= 2;
                 print(target.GetComponent<SpaceShip2>().health);
                 explosion = Resources.Load("SmallExplosionEffect") as GameObject;
                 explosion = GameObject.Instantiate(this.explosion);
                 explosion.transform.position = target.transform.position;
                 Destroy(explosion, 1f);
             }
+            Destroy(this.gameObject);
         }
 
     }

@@ -76,8 +76,6 @@ public class Spaceship : MonoBehaviour
                 gameObject.AddComponent<NoiseWander>().axis = NoiseWander.Axis.Vertical;
                 gameObject.AddComponent<Constrain>().radius = 100f;
             }
-
-
         }
     }
     IEnumerator spawnBullet()
